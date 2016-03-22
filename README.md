@@ -12,6 +12,14 @@ Let's take a look at routing - this is the part of the application which spreads
 - Integrate a Controller with ngRoute
 - Integrate a template with ngRoute
 
+## Routing our applications
+
+Up until now, nothing we've created is specific to an actual page. It wouldn't make sense to put all of the application on one page - we need to split it into logical chunks. Just think how Facebook has user profiles, your timeline, your settings, etc. all under different URLs - we need to be able to do the same.
+
+Our URLs should represent the action that the user wants to make - it wouldn't make sense to have our settings page at `/home` or our home page at `/settings`. We should also be able to revisit our URLs and receive the same page back. A user should be able to bookmark a settings page or send the link their friend and see the same content the second time.
+
+Angular allows us to do this - we can define these routes in our application, using controllers and templates (quite similar to our directives). Angular, by default, attaches these route URLs to the `#` (hash). This is to maximize browser compatibility - we can change the hash of the page without refreshing the page - only newer browsers can actually update the URL without refreshing the page. This means our `http://site.com/settings` and `http://site.com/home` routes will actually become `http://site.com/#/settings` and `http://site.com/#/home` respectively.
+
 ## ngRoute
 
 `ngRoute` is a module that is provided to us by the Angular team. This is a basic router that allows us to specify different templates and controllers for our views.
@@ -116,6 +124,8 @@ Now that we can access all of our route params, we can now go off and fetch the 
 
 ## Resolving Data
 
+When we load our page, we might require some data from the server. We might have a user profile that needs data from the server, so we know all about that user and a list of their photos for example. This is where resolving data comes in - we can request data before our routes load, to then use in our page.
+
 Now, we could go and fetch user data in our controller, but that means that the view will load and then we will have a flicker between the view having no user data and the view being populated with data.
 
 Instead, we can use the `resolve` property we spoke about earlier - this allows us to specify a bunch of promises that we want to be resolved *before* our view is rendered.
@@ -139,7 +149,7 @@ function UserController($routeParams, UserService) {
 	UserService
 		.getUser($routeParams.id)
 		.then(function (res) {
-			ctrl.user = res.data;
+			ctrl.user = res.data; // our user object is populated from the backend
 		});
 }
 
@@ -157,7 +167,7 @@ angular
 		$routeProvider
 			.when('/user/:id', {
 				templateUrl: 'views/user.html',
-				controller: 'UserController',
+				controller: 'UserController as user',
 				resolve: {
 					user: function ($routeParams, UserService) {
 						return UserService.getUser($routeParams.id);
@@ -167,7 +177,7 @@ angular
 	});
 ```
 
-Here we're doing very similar things to what we're doing in our controller - injecting `$routeParams` and our `UserService`, but instead we're returning the promise given to use by our `$http.get` call. Once this promise resolves, `ngRoute` will then render our view.
+Here we're doing very similar things to what we're doing in our controller - injecting `$route` and our `UserService`, but instead we're returning the promise given to use by our `$http.get` call. Once this promise resolves, `ngRoute` will then render our view.
 
 That's great, but now how do we get access to that data? Simple - you notice that we're using the key `user` in our resolve object? We can now inject `user` into our controller, accessing all the data that the resolve gives us.
 
