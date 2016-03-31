@@ -16,7 +16,7 @@ Let's take a look at routing - this is the part of the application which spreads
 
 Up until now, nothing our users have done will be reflected by the URL. Every action is taking place in the context of the main page. Although we're creating a single page application, we still need to split it into logical chunks. Just think how Facebook has user profiles, your timeline, your settings, etc. all under different URLs - we need to be able to do the same.
 
-Our URLs should represent the action that the user wants to make - it wouldn't make sense to have our settings page at `/home` or our home page at `/settings`. We should also be able to revisit our URLs and receive the same page back. A user should be able to bookmark a settings page or send the link their friend and see the same content the second time.
+Our URLs should represent the action that the user wants to make - it wouldn't make sense to have our settings page at `/home` or our home page at `/settings`. We should also be able to revisit our URLs and receive the same page back. A user should be able to bookmark a settings page or send the link to their friend and see the same content the second time.
 
 Angular allows us to do this - we can define these routes in our application, using controllers and templates (quite similar to our directives). Angular, by default, attaches these route URLs to the `#` (hash). This is to maximize browser compatibility - we can change the hash of the page without refreshing the page - only newer browsers can actually update the URL without refreshing the page. This means our `http://site.com/settings` and `http://site.com/home` routes will actually become `http://site.com/#/settings` and `http://site.com/#/home` respectively.
 
