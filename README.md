@@ -90,7 +90,7 @@ The `ng-view` directive will then put whatever route's template as it's contents
 
 ### Dynamic Views
 
-Being able to go to `/user` is great, but what if we wanted to a view a different user's profile? Well, we would need to specify the ID of that user. But our route isn't setup to receive an ID, and we can't hard code *every* ID into our router. This is where dynamic views come in.
+Being able to go to `/user` is great, but what if we wanted to view a different user's profile? Well, we would need to specify the ID of that user. But our route isn't setup to receive an ID, and we can't hard code *every* ID into our router. This is where dynamic views come in.
 
 Much like when we used `$resource`, we can put variables into our URLs by using a colon. For instance, if we wanted to be able to go to `/user/1231` and `/user/94343` etc, we'd put `:id` into our URL.
 
@@ -194,3 +194,5 @@ angular
 ```
 
 Simple! No flicker, and we've got dynamic routes working whilst also fetching the relevant data!
+
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/angular-ngroute-readme'>Angular ngRroute </a> on Learn.co and start learning to code for free.</p>
