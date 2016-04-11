@@ -177,7 +177,7 @@ angular
 	});
 ```
 
-Here we're doing very similar things to what we're doing in our controller - injecting `$route` and our `UserService`, but instead we're returning the promise given to use by our `$http.get` call. Once this promise resolves, `ngRoute` will then render our view.
+Here we're doing very similar things to what we're doing in our controller - injecting `$route` and our `UserService`, but instead we're returning the promise given to us by our `$http.get` call. Once this promise resolves, `ngRoute` will then render our view.
 
 That's great, but now how do we get access to that data? Simple - you notice that we're using the key `user` in our resolve object? We can now inject `user` into our controller, accessing all the data that the resolve gives us.
 
