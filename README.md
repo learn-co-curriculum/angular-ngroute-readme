@@ -86,7 +86,7 @@ In our HTML, we would do something like this:
 </div>
 ```
 
-The `ng-view` directive will then put whatever route's template as it's contents when we go to that route - awesome!
+The `ng-view` directive will then put whatever route's template as its contents when we go to that route - awesome!
 
 ### Dynamic Views
 
